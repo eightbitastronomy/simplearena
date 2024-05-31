@@ -60,7 +60,7 @@ int * myotherlocalarray = (int *)astake(aholder,sizeof(int)*someothervariable);
 
 //and on and on
 
-If you're arena isn't big enough, the astake returns NULL. Just like you would check to be sure malloc returned a non-null pointer, you would do that here too. There is nothing you can do at runtime if this happens. That's the downside to arenas. So, you'll need some kind of algorithm in your code for dynamically choosing the best wrapper function. For example, if you are building pixel maps of 4 8-bit channels, then you can predict the memory necessary with width x height x 4 bytes. Need three more of these for three layers to be flattened onto a fourth? Then multiply by four. Setup an if-then tree to scale up your wrapper size. Not too exciting, no, but if you're worried about memory leakage, then it's more exciting than tracing through your code.
+If your arena isn't big enough, the astake returns NULL. Just like you would check to be sure malloc returned a non-null pointer, you would do that here too. There is nothing you can do at runtime if this happens. That's the downside to arenas. So, you'll need some kind of algorithm in your code for dynamically choosing the best wrapper function. For example, if you are building pixel maps of 4 8-bit channels, then you can predict the memory necessary with width x height x 4 bytes. Need three more of these for three layers to be flattened onto a fourth? Then multiply by four. Setup an if-then tree to scale up your wrapper size. Not too exciting, no, but if you're worried about memory leakage, then it's more exciting than tracing through your code.
 
 Rock hard, ride [without using] free.
 
