@@ -1,8 +1,8 @@
-#ARENA MEMORY MANAGEMENT
+# ARENA MEMORY MANAGEMENT
 
 brought to you by cleverer people than me. But I did notice some limitations in the arena-implementation of stack-based memory allocation in C. In response, I wrote a very small and simple library: this one.
 
-##"Okay my dude but what is arena memory?"
+## "Okay my dude but what is arena memory?"
 
 So glad you asked. I first encountered it with Rust, then discovered later that in C it can be a useful way to avoid the use of malloc and free. Malloc and free allocate and deallocate memory, respectively, from the heap. This must be done in C manually. Even meticulous developers can leave openings for memory leaks. In C++, the task is less burdensome, but there are those who have pointed out that heap usage in C++ can be less than straightforward (hence, memory leaks occur). Rust provides a novel way to avoid memory leaks, but the trade off is complexity. Now we come to stack-based memory. Every function call leads to resource-usage on the stack. One can't normally code a little "Hey just gimme some of that stack sh** so that I don't have to free it." Nonetheless, one doesn't always know the sizes of arrays and such at compile time. Hence, we're back at the heap, begging for forgiveness.
 
@@ -34,7 +34,7 @@ The solution presented here is wrapper functions. Each wrapper has a size in its
 
 Importantly, one still needs to know how big the arena should be. But with the wrapper functions, the developer can use small arenas here, big ones there, medium ones over here...you get the idea. Instead of asking for enormous 128 MB arenas at various points in the code, smaller asks can be made when smaller things need done.
 
-##Usage
+## Usage
 
 Your target function must be written with a variable-argument signature and must return an integer. For example, if your target function originally looked like...
 
